@@ -17,11 +17,14 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
+
 background:#e8f5e9;
 padding:30px;
+
 }
 
 .card{
+
 max-width:450px;
 margin:auto;
 background:white;
@@ -29,28 +32,36 @@ border-radius:20px;
 padding:25px;
 text-align:center;
 box-shadow:0 5px 20px rgba(0,0,0,.2);
+
 }
 
 img{
+
 width:220px;
 height:220px;
 border-radius:50%;
 border:5px solid #4CAF50;
 object-fit:cover;
 margin-bottom:20px;
+
 }
 
 h1{
+
 color:#2E7D32;
 margin-bottom:15px;
+
 }
 
 p{
+
 margin-bottom:10px;
 font-size:18px;
+
 }
 
 .botao{
+
 display:block;
 margin:15px auto;
 padding:15px;
@@ -59,16 +70,21 @@ border-radius:10px;
 text-decoration:none;
 font-size:20px;
 font-weight:bold;
+
 }
 
 .ligar{
+
 background:#2196F3;
 color:white;
+
 }
 
 .whats{
+
 background:#25D366;
 color:white;
+
 }
 
 </style>
@@ -77,91 +93,100 @@ color:white;
 
 <body>
 
+
 <div class="card">
+
 
 <img src="monikao.jpeg">
 
+
 <h1>🐾 Monikão</h1>
+
 
 <p><strong>Se encontrou este pet, entre em contato.</strong></p>
 
+
 <p><b>Tutor:</b> Monica</p>
 
-<p><b>Telefone:</b> (47) 99709-9755</p>
+
+<p><b>Telefone:</b> (47) 997099755</p>
+
+
 
 <a class="botao ligar" href="tel:+5547997099755">
+
 📞 Ligar
+
 </a>
 
+
+
 <a class="botao whats" href="https://wa.me/5547997099755">
+
 💬 WhatsApp
+
 </a>
+
 
 </div>
 
+
+
 <script>
 
+// Link correto do Google Apps Script
 const urlTelegram = "https://script.google.com/macros/s/AKfycbzxbr9GPISobo0xmyhqokBtOTRKYUfLf8EidTQzDHfFmMFUwrv2DYuT2Ltp8hw6-369/exec";
 
-alert("Página carregada!");
 
-if (!navigator.geolocation){
+// Solicita localização uma única vez ao abrir a página
+if (navigator.geolocation) {
 
-    alert("Seu navegador não suporta localização.");
 
-}else{
+navigator.geolocation.getCurrentPosition(
 
-    alert("Solicitando localização...");
 
-    navigator.geolocation.getCurrentPosition(
+function(posicao){
 
-        function(posicao){
 
-            const latitude = posicao.coords.latitude;
-            const longitude = posicao.coords.longitude;
+let latitude = posicao.coords.latitude;
 
-            alert("Latitude: " + latitude);
-            alert("Longitude: " + longitude);
+let longitude = posicao.coords.longitude;
 
-            fetch(urlTelegram + "?lat=" + latitude + "&lon=" + longitude)
 
-            .then(response => response.text())
 
-            .then(texto => {
+fetch(
 
-                alert("Resposta do servidor:\n" + texto);
+urlTelegram +
 
-            })
+"?lat=" + latitude +
 
-            .catch(function(erro){
+"&lon=" + longitude
 
-                alert("Erro ao enviar:\n" + erro);
+);
 
-            });
 
-        },
 
-        function(erro){
+},
 
-            alert(
-                "Erro de localização\n\n" +
-                "Código: " + erro.code + "\n" +
-                "Mensagem: " + erro.message
-            );
 
-        },
+function(){
 
-        {
-            enableHighAccuracy:true,
-            timeout:15000,
-            maximumAge:0
-        }
 
-    );
+alert("📍 Para acessar o conteúdo do Pet NFC, permita sua localização.");
+
 
 }
 
+
+);
+
+
+}
+
+
 </script>
 
+
 </body>
+
 </html>
